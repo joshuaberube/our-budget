@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Categories from './Categories/Categories'
+import DropdownMenu from './DropdownMenu/DropdownMenu'
+
 
 const AddBudgetItem = ({setBudgetItems}) => {
     const [budgetItemInputs, setBugetItemInputs] = useState("")
@@ -16,14 +18,50 @@ const AddBudgetItem = ({setBudgetItems}) => {
     // ))
 
     return (
-        <form>
-            <fieldset>
-                <legend>Add a budget item</legend>
-                <div>
-                    <Categories />
-                </div>
-            </fieldset>
-        </form>
+        // <form>
+        //     <fieldset>
+        //         <legend>Add a budget item</legend>
+        //         <Categories />
+        //     </fieldset>
+        // </form>
+        
+        <DropdownMenu config={[
+            {
+              "title": "Option 1",
+              "submenu": null
+            },
+            {
+              "title": "Option 2",
+              "submenu": [
+                {
+                  "title": "Option 2.1",
+                  "submenu": [
+                    {
+                      "title": "Option 2.1.1",
+                      "submenu": null
+                    },
+                    {
+                      "title": "Option 2.1.2",
+                      "submenu": null
+                    }
+                  ]
+                },
+                {
+                  "title": "Option 2.2",
+                  "submenu": [
+                    {
+                      "title": "Option 2.2.1",
+                      "submenu": null
+                    },
+                    {
+                      "title": "Option 2.2.2",
+                      "submenu": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]}/>
     )
 }
 
