@@ -10,7 +10,6 @@
 .dropdown-menu li {
     display: inline-block;
     position: relative;
-    float: left;
     width: 200px;
     line-height: 35px;
     text-decoration: none;
@@ -44,13 +43,4 @@
     margin-left: 200px;/*This must be width of menu box*/
     margin-top: -35px;
     display: block;
-}
-nu-li {
-    padding: 10px;
-}
-
-.dropdown-submenu {
-    position: absolute;
-    left: 0px;
-    top: 0px;
 }

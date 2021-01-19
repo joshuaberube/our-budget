@@ -3,37 +3,40 @@ import Category from './Category'
 
 let categoriesArr = [
     {
-        primaryCategoryTitle: "Food",
-        secondaryCategories: [
-            { secondaryCategoryTitle: "Grocery" },
+        title: "Food",
+        subCategories: [
+            { title: "Grocery", subCategories : null },
             {
-                secondaryCategoryTitle: "Restaurants",
-                tertiaryCategories: [
-                    {tertiaryCategoryTitle: "Fast Food"}, 
-                    {tertiaryCategoryTitle: "Sit down"}
+                title: "Restaurants",
+                subCategories: [
+                    {title: "Fast Food", subCategories : null}, 
+                    {title: "Sit down", subCategories : null}
                 ]
             }
         ]
     },
     {
-        primaryCategoryTitle: "Shopping",
-        secondaryCategories: [
-            { secondaryCategoryTitle: "Clothing" },
+        title: "Shopping",
+        subCategories: [
+            { title: "Clothing", subCategories : null },
             {
-                secondaryCategoryTitle: "Electronics & Software",
-                tertiaryCategories: [
-                    {tertiaryCategoryTitle: "Video Games"}, 
-                    {tertiaryCategoryTitle: "Apps"}
+                title: "Electronics & Software",
+                subCategories: [
+                    {title: "Video Games", subCategories : null}, 
+                    {title: "Apps", subCategories : null}
                 ]
             }
         ]
     },
-    { primaryCategoryTitle: "testing" },
+    { 
+        title: "testing",
+        subCategories : null
+    },
     {
-        primaryCategoryTitle: "Testing2",
-        secondaryCategories: [
-            {secondaryCategoryTitle: "wow"}, 
-            {secondaryCategoryTitle: "much wow indeed"}
+        title: "Testing2",
+        subCategories: [
+            {title: "wow", subCategories : null}, 
+            {title: "much wow indeed", subCategories : null}
         ]
     },
 ]

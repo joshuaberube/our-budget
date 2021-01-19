@@ -2,9 +2,49 @@ import { useState } from 'react'
 import Categories from './Categories/Categories'
 import DropdownMenu from './DropdownMenu/DropdownMenu'
 
+let categoriesArr = [{
+    title: "Food",
+    subcategory: [
+        { title: "Grocery", subcategory : null },
+        {
+            title: "Restaurants",
+            subcategory: [
+                {title: "Fast Food", subcategory : null}, 
+                {title: "Sit down", subcategory : null}
+            ]
+        }
+    ]
+    },
+    {
+        title: "Shopping",
+        subcategory: [
+            { title: "Clothing", subcategory : null },
+            {
+                title: "Electronics & Software",
+                subcategory: [
+                    {title: "Video Games", subcategory : null}, 
+                    {title: "Apps", subcategory : null}
+                ]
+            }
+        ]
+    },
+    { 
+        title: "testing",
+        subcategory : null
+    },
+    {
+        title: "Testing2",
+        subcategory: [
+            {title: "wow", subcategory : null}, 
+            {title: "much wow indeed", subcategory : null}
+        ]
+    },
+]
+
 
 const AddBudgetItem = ({setBudgetItems}) => {
     const [budgetItemInputs, setBugetItemInputs] = useState("")
+    const [categoriesDropdown, setCategoriesDropdown] = useState(false)
 
     
 
@@ -18,50 +58,14 @@ const AddBudgetItem = ({setBudgetItems}) => {
     // ))
 
     return (
-        // <form>
-        //     <fieldset>
-        //         <legend>Add a budget item</legend>
-        //         <Categories />
-        //     </fieldset>
-        // </form>
+        <form>
+            <fieldset>
+                <legend>Add a budget item</legend>
+                <input type="button" onClick={() => setCategoriesDropdown(!categoriesDropdown)} value="test" />
+                {categoriesDropdown ? <DropdownMenu categories={categoriesArr} classTest /> : null}
+            </fieldset>
+        </form>
         
-        <DropdownMenu config={[
-            {
-              "title": "Option 1",
-              "submenu": null
-            },
-            {
-              "title": "Option 2",
-              "submenu": [
-                {
-                  "title": "Option 2.1",
-                  "submenu": [
-                    {
-                      "title": "Option 2.1.1",
-                      "submenu": null
-                    },
-                    {
-                      "title": "Option 2.1.2",
-                      "submenu": null
-                    }
-                  ]
-                },
-                {
-                  "title": "Option 2.2",
-                  "submenu": [
-                    {
-                      "title": "Option 2.2.1",
-                      "submenu": null
-                    },
-                    {
-                      "title": "Option 2.2.2",
-                      "submenu": null
-                    }
-                  ]
-                }
-              ]
-            }
-          ]}/>
     )
 }
 
