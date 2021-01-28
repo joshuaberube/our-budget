@@ -1,4 +1,4 @@
-const DropdownMenu = ({categories, subcategories, classTest}) => (
+const DropdownMenu = ({categories, subcategories}) => (
     <ul className={subcategories ? null : "dropdown-menu" }>
         {categories.map(({title, subcategory}) => (
             <li key={title}>

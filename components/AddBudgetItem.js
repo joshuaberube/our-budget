@@ -9,8 +9,14 @@ let categoriesArr = [{
         {
             title: "Restaurants",
             subcategory: [
-                {title: "Fast Food", subcategory : null}, 
-                {title: "Sit down", subcategory : null}
+                {
+                    title: "Fast Food", 
+                    subcategory: null
+                }, 
+                {
+                    title: "Sit down", 
+                    subcategory: null
+                }
             ]
         }
     ]
@@ -18,12 +24,12 @@ let categoriesArr = [{
     {
         title: "Shopping",
         subcategory: [
-            { title: "Clothing", subcategory : null },
+            { title: "Clothing", subcategory: null },
             {
                 title: "Electronics & Software",
                 subcategory: [
-                    {title: "Video Games", subcategory : null}, 
-                    {title: "Apps", subcategory : null}
+                    {title: "Video Games", subcategory: null}, 
+                    {title: "Apps", subcategory: null}
                 ]
             }
         ]
@@ -35,8 +41,8 @@ let categoriesArr = [{
     {
         title: "Testing2",
         subcategory: [
-            {title: "wow", subcategory : null}, 
-            {title: "much wow indeed", subcategory : null}
+            {title: "wow", subcategory: null}, 
+            {title: "much wow indeed", subcategory: null}
         ]
     },
 ]
@@ -61,7 +67,7 @@ const AddBudgetItem = ({setBudgetItems}) => {
         <form>
             <fieldset>
                 <legend>Add a budget item</legend>
-                <input type="button" onClick={() => setCategoriesDropdown(!categoriesDropdown)} value="test" />
+                <input type="search" onClick={() => setCategoriesDropdown(!categoriesDropdown)} value="test" />
                 {categoriesDropdown ? <DropdownMenu categories={categoriesArr} classTest /> : null}
             </fieldset>
         </form>

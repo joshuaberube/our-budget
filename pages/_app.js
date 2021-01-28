@@ -1,8 +1,8 @@
 import '../styles/globals.css'
 import "../components/DropdownMenu/test.css"
 
-const MyApp = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />
-}
+const App = ({ Component, pageProps }) => (
+  <Component {...pageProps} />
+)
 
-export default MyApp
+export default App

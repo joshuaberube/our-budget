@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     float: left;
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
@@ -13,8 +15,13 @@
     width: 200px;
     line-height: 35px;
     text-decoration: none;
+    
 }
 
+.dropdown-menu li ul {
+    margin-left: 200px;
+    margin-top: -35px;
+}
 
 .dropdown-menu li li a {
     font-size: 12px;
@@ -22,6 +29,7 @@
 
 .dropdown-menu li:hover {
     background: blue;
+
 }
 
 /*--- Sublist Styles ---*/
