@@ -1,23 +1,29 @@
 import { useCallback, useEffect, useState } from 'react'
 import { usePlaidLink } from "react-plaid-link"
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios"
 
 const PlaidLink = () => {
     const [token, setToken] = useState("")
-    const dispatch = useDispatch()
-    const isLoggedIn = useSelector(selectIsLoggedIn)
+    // const dispatch = useDispatch()
+    // const isLoggedIn = useSelector(selectIsLoggedIn)
+    const isLoggedIn = true
 
-    const onSuccess = useCallback(async publicToken => {
-        await axios.post("/api/plaid/create-access-token", { publicToken })
-        .catch(err => console.log(err))
+    const onSuccess = useCallback((publicToken, metadata) => {
+        // try {
+        //     const test = await axios.post("/api/plaid/create-access-token", { publicToken })
+        //     console.log(test)
+        // } catch (err) {
+        //     console.log(err)
+        // }
+        console.log(publicToken)
     }, [])
 
     const onEvent = useCallback(eventName => {
-        if (eventName === "HANDOFF") dispatch(getTransactions())
+        if (eventName === "HANDOFF") console.log("Awesome")
     }, [dispatch])
 
-    const config = { token, onSuccess, onEvent }
+    const config = { clientName: "Our Budget", token, onSuccess, onEvent }
 
     const { open, ready, error } = usePlaidLink(config)
 
@@ -26,6 +32,7 @@ const PlaidLink = () => {
             try {
                 const response = await axios.post("/api/plaid/create-link-token")
                 setToken(response.data)
+                console.log(response.data)
             } catch (err) {
                 console.log(err)
             }

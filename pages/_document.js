@@ -4,7 +4,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <script rel="preload" type="text/javascript" src="https://cdn.plaid.com/link/v2/stable/link-initialize.js" ></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
