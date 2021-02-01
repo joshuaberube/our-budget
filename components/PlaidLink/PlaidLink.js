@@ -9,19 +9,17 @@ const PlaidLink = () => {
     // const isLoggedIn = useSelector(selectIsLoggedIn)
     const isLoggedIn = true
 
-    const onSuccess = useCallback((publicToken, metadata) => {
-        // try {
-        //     const test = await axios.post("/api/plaid/create-access-token", { publicToken })
-        //     console.log(test)
-        // } catch (err) {
-        //     console.log(err)
-        // }
-        console.log(publicToken)
+    const onSuccess = useCallback(async publicToken => {
+        const {data: accessToken} = await axios.post("/api/plaid/create-access-token", { publicToken })
+            .catch(err => console.log(err))
+
+        const transactions = await axios.post('/api/plaid/transactions', {accessToken})
+        console.log(transactions.data)
     }, [])
 
     const onEvent = useCallback(eventName => {
         if (eventName === "HANDOFF") console.log("Awesome")
-    }, [dispatch])
+    }, [])
 
     const config = { clientName: "Our Budget", token, onSuccess, onEvent }
 
@@ -29,13 +27,10 @@ const PlaidLink = () => {
 
     useEffect(() => {
         const createToken = async () => {
-            try {
-                const response = await axios.post("/api/plaid/create-link-token")
-                setToken(response.data)
-                console.log(response.data)
-            } catch (err) {
-                console.log(err)
-            }
+            const response = await axios.post("/api/plaid/create-link-token")
+                .catch(err => console.log(err))
+
+            setToken(response.data)
         }
 
         if (isLoggedIn) createToken()

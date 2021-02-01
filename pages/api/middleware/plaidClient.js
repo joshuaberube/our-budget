@@ -1,5 +1,6 @@
-import nextConnect from 'next-connect'
 import plaid from 'plaid'
+import dotenv from "dotenv"
+dotenv.config()
 
 const { PLAID_CLIENT_ID, PLAID_SECRET_SANDBOX, PLAID_SECRET_DEVELOPMENT, PLAID_ENV, ENCRYPTION_KEY } = process.env
 
@@ -12,10 +13,4 @@ const client = new plaid.Client({
     env: plaid.environments[PLAID_ENV],
 })
 
-const handler = nextConnect()
-
-console.log("He!")
-handler.post((req, res, next) => {
-    req.clientTest = "hi"
-    next()
-})
+export default client

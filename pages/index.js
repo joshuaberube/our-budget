@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import AddBudgetItem from '../components/AddBudgetItem'
 import useSWR from "swr"
 import axios from "axios"
-import { PlaidLink } from 'react-plaid-link'
 import TestMyDude from '../components/TestMyDude'
+import PlaidLink from "../components/PlaidLink/PlaidLink"
+
 
 
 // const fetcher = (...[url, body]) => axios.post(url, body).then(res => res.data)
@@ -50,15 +51,14 @@ const Home = () => {
         
       </Head>
       <main>
-        <h1>Hey</h1>
-        {/* <PlaidLink /> */}
-        {/* <AddBudgetItem /> */}
-        {/* <form onSubmit={handleSubmit}>
-          <input type="email" name="email" onChange={changeHandler} />
-          <input type="password" name="password" onChange={changeHandler} />
-          <button type="submit">login</button>
-        </form> */}
-        <TestMyDude />
+          {/* <AddBudgetItem /> */}
+          {/* <form onSubmit={handleSubmit}>
+            <input type="email" name="email" onChange={changeHandler} />
+            <input type="password" name="password" onChange={changeHandler} />
+            <button type="submit">login</button>
+          </form> */}
+          <PlaidLink />
+          <TestMyDude />
       </main>
     </div>
   )
