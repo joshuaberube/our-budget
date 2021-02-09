@@ -1,20 +1,15 @@
 import firebase from '../firebase'
 import { useState } from 'react'
 import Head from 'next/head'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import useUser from '../hooks/userUser'
+import { useRouter } from 'next/router'
 
 const Entry = () => {
     const [entryInputs, setEntryInputs] = useState({fullName: "", email: "", password: "", phoneNumber: "", state: ""})
     const [isLoggingIn, setIsLoggingIn] = useState(true)
-    const [user, setUser] = useState({})
-    // const [error, setError] = useState(null)
-    // const [user11, loading, ] = useAuthState(firebase.auth())
-    // const [value, loading] = useCollection(firebase.firestore().collection('users').doc(user.uid))
-    // const [user1, error] = useUser()
+    const router = useRouter()
 
-    console.log(useUser())
-    // console.log(error)
+    if (firebase.auth().currentUser) router.push("/")
+    
     const states = [
         "AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", 
         "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", 
@@ -56,20 +51,19 @@ const Entry = () => {
         e.preventDefault()
 
         try {
-            const firestore = firebase.firestore()
 
             if (isLoggingIn) {
                 const {user} = await firebase.auth().signInWithEmailAndPassword(email, password)
         
-                console.log(user)
-                const userData = await firestore.collection('users').doc(user.uid).get()
-                setUser(userData.data())
+                if (user) router.push("/")
             } else {
                 const {user} = await firebase.auth().createUserWithEmailAndPassword(email, password)
         
-                const userData = await firestore.collection('users').doc(user.uid).set({ fullName, email, phoneNumber, state, uid: user.uid, emailVerified: user.emailVerified })
-                setUser(userData.data())
-        
+                await firebase.firestore().collection('users').doc(user.uid)
+                    .set({ fullName, email, phoneNumber, state, uid: user.uid, emailVerified: user.emailVerified })
+
+                router.push("/")
+
                 // //TODO Update sendEmailVerification to link you back to the site for better UX
                 // await firebase.auth().currentUser.sendEmailVerification()
             }
@@ -81,16 +75,10 @@ const Entry = () => {
     
     const isLoggingInStateText = isLoggingIn ? "Login" : "Register"
 
-    console.log(user)
-
-    // if (error) {
-    //     return 
-    // }
-
     return (
         <>
             <Head>
-                <title>{isLoggingInStateText}</title>
+                <title>Our Budget | {isLoggingInStateText}</title>
             </Head>
             <form onSubmit={onSubmitHandler}>
                 <fieldset>
